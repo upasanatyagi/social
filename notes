@@ -1,0 +1,15 @@
+1.src - all react code will live here.will have 20 to 30 file by end of project
+        start.js imports react,importing REACT DOM ,all code in start js goes to main tag in html
+2.we can only render one component at a time and that can render other components and it goes on.
+3.every component will start with capital letter
+4.jsx- combines html and javascript<div>Hello,World</div>,can return with <React.Fragment> instead of <div> for styling purpose.
+4. document.querySelector('main'),will inject all the code
+5.to start bundle server- -------node bundle-server.js
+6.putting some thing in 'state', we are telling react that the property might change
+7.props can only be passed by parents to child n not vice versa.
+
+page 1
+1.needs 2 components are welcome(big logo inside welcome, its child will show form where people register)
+2.will do switch between login and register , will use library
+3.logo in welcome component(not necessary)
+4.use url to determine if the person are logged in or not, if logged in let them go whereever they want except register
