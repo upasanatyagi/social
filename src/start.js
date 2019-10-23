@@ -11,7 +11,9 @@ const userIsLoggedIn = location.pathname != "/welcome";
 if (!userIsLoggedIn) {
     elem = <Welcome />;
 } else {
-    elem = <img src="logo.gif" />;
+    elem = (
+        <img src="https://socialbox.agency/wp-content/uploads/2019/09/SB-LOGO.png" />
+    );
 }
 
 ReactDOM.render(elem, document.querySelector("main"));

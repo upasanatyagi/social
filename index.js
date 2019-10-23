@@ -3,8 +3,8 @@ const app = express();
 const compression = require("compression");
 const db = require("./database");
 const cookieSession = require("cookie-session");
-// const csurf =require('csurf');
 const bcrypt = require("./bcrypt");
+const csurf = require("csurf");
 
 app.use(express.static("./public"));
 app.use(
@@ -12,12 +12,19 @@ app.use(
         extended: false
     })
 );
+
 app.use(
     cookieSession({
         secret: `I'm always angry.`,
         maxAge: 1000 * 60 * 60 * 24 * 14 //expiration age,how long cookie to last
     })
 );
+app.use(csurf());
+
+app.use(function(req, res, next) {
+    res.cookie("mytoken", req.csrfToken());
+    next();
+});
 
 app.use(express.json());
 app.use(compression());
@@ -65,7 +72,7 @@ app.post("/register", (request, response) => {
                 })
                 .catch(e => {
                     console.log(e);
-                    response.sendStatus(500);
+                    // response.sendStatus(500);
                     // reponse.json({error: true});
                     // response.render("registration", {
                     //     error: true
@@ -75,6 +82,56 @@ app.post("/register", (request, response) => {
         .catch(e => {
             console.log(e);
             response.sendStatus(500);
+        });
+});
+
+app.post("/login", (request, response) => {
+    console.log("................ inside login");
+    let userId;
+    let { password, email } = request.body;
+    db.login(email)
+        .then(result => {
+            console.log("................ inside login::: first then", result);
+            let { id, hash } = result.rows[0];
+            userId = id;
+            console.log(
+                ">>>>.index.login.post userid and passwordhash ",
+                userId,
+                hash
+            );
+
+            return bcrypt
+                .compare(password, hash)
+                .then(result => {
+                    console.log(result);
+                    // response.json({ success: true });
+                    return result;
+                })
+                .catch(e => {
+                    console.log("index.login.post.bcrypt.error ", e);
+                    response.sendStatus(500);
+                    // response.render("login", {
+                    //     error: true
+                    // });
+                    // response.redirect("/login");
+                });
+        })
+        .then(authorised => {
+            "................ auth inside login::: 2nd thllllllen";
+            if (!authorised) {
+                return response.sendStatus(500);
+            }
+            request.session.loggedIn = "true";
+            request.session.userId = userId;
+            response.json({ success: true });
+        })
+
+        .catch(e => {
+            console.log(e);
+            response.sendStatus(500);
+            // response.render("login", {
+            //     error: true
+            // });
         });
 });
 

@@ -1,5 +1,6 @@
 import React from "react";
-import axios from "axios";
+import axios from "./axios";
+import { Link } from "react-router-dom";
 
 export default class Register extends React.Component {
     constructor(props) {
@@ -38,6 +39,12 @@ export default class Register extends React.Component {
                         error: true
                     });
                 }
+            })
+            .catch(e => {
+                console.log(e);
+                this.setState({
+                    error: true
+                });
             });
     }
     render() {
@@ -69,6 +76,7 @@ export default class Register extends React.Component {
                 />
 
                 <button onClick={() => this.submit()}>submit</button>
+                <Link to="/login">Click here to Log in!</Link>
             </div>
         );
     }
