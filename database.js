@@ -6,7 +6,7 @@ const db = spicedPg(
 module.exports.registerUser = function(first, last, email, password) {
     return db.query(
         `INSERT INTO registration (first,last, email, password) VALUES ($1,  $2, $3 ,$4)
-        RETURNING id AS userId`,
+        RETURNING id `,
         [first, last, email, password]
     );
 };

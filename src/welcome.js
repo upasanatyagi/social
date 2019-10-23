@@ -4,7 +4,7 @@ import Register from "./register";
 export default function Welcome() {
     return (
         <div>
-            Hello, World!
+            <h1>Welcome to</h1>
             <Register />
         </div>
     );

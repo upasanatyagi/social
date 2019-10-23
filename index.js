@@ -50,22 +50,17 @@ app.post("/register", (request, response) => {
         "index.register.post   >>>>>>>>>>>>>>>>>>>>>>>>>>.",
         request.body
     );
-    let first = request.body.first;
-    let last = request.body.last;
-    let email = request.body.email;
-    let userPassword = request.body.password;
+    let { first, last, email, password } = request.body;
 
-    console.log("first,last,email,password", first, last, email, userPassword);
+    console.log("first,last,email,password", first, last, email, password);
     bcrypt
-        .hash(userPassword)
-        .then(result => {
-            console.log(result);
-            db.registerUser(first, last, email, result) //password already encrypted as result
-                .then(({ rows }) => {
-                    console.log("rows----", rows[0].id);
-                    request.session.userId = rows[0].id;
-                    request.session.loggedIn = "true";
-                    console.log("userId:", request.session.userId);
+        .hash(password)
+        .then(hash => {
+            // console.log(result);
+            db.registerUser(first, last, email, hash) //password already encrypted as result
+                .then(newUser => {
+                    request.session.userId = newUser.rows[0].id;
+                    response.json({ success: true });
                     // response.redirect("/profile");
                 })
                 .catch(e => {
@@ -85,11 +80,11 @@ app.post("/register", (request, response) => {
 
 /// DO NOT DELETE///
 app.get("*", function(req, res) {
-    // if (!res.session.userId) {
-    res.redirect("/welcome");
-    // } else {
-    // res.sendFile(__dirname + "/index.html");
-    // }
+    if (!res.session.userId) {
+        res.redirect("/welcome");
+    } else {
+        res.sendFile(__dirname + "/index.html");
+    }
 });
 /// DO NOT DELETE///
 

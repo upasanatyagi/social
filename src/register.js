@@ -4,7 +4,9 @@ import axios from "axios";
 export default class Register extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            error: null
+        };
     }
     handleChange({ target }) {
         //let target = e.target;
@@ -15,16 +17,22 @@ export default class Register extends React.Component {
         });
     }
     submit() {
-        // if(this.state.email.index('@')== -1){
-        //     return this.setState
-        // }
+        if (this.state.email.index("@") == -1) {
+            return this.setState({
+                error: true
+            });
+        }
         axios
             .post("/register", {
                 first: this.state.first,
-                last: this.state.last
+                last: this.state.last,
+                email: this.state.email,
+                password: this.state.password
             })
             .then(({ data }) => {
                 if (data.success) {
+                    console.log(data);
+                    location.replace("/");
                 } else {
                     this.setState({
                         error: true
