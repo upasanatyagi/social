@@ -35,7 +35,7 @@ if (process.env.NODE_ENV != "production") {
 
 app.get("/welcome", function(req, res) {
     if (req.session.userId) {
-        res.direct("/");
+        res.redirect("/");
     } else {
         res.sendFile(__dirname + "/index.html");
     }
@@ -56,12 +56,12 @@ app.post("/register", (request, response) => {
     bcrypt
         .hash(password)
         .then(hash => {
-            // console.log(result);
             db.registerUser(first, last, email, hash) //password already encrypted as result
                 .then(newUser => {
+                    console.log("newUser", newUser);
                     request.session.userId = newUser.rows[0].id;
                     response.json({ success: true });
-                    // response.redirect("/profile");
+                    // response.redirect("/");
                 })
                 .catch(e => {
                     console.log(e);
@@ -80,7 +80,7 @@ app.post("/register", (request, response) => {
 
 /// DO NOT DELETE///
 app.get("*", function(req, res) {
-    if (!res.session.userId) {
+    if (!req.session.userId) {
         res.redirect("/welcome");
     } else {
         res.sendFile(__dirname + "/index.html");

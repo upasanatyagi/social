@@ -17,11 +17,11 @@ export default class Register extends React.Component {
         });
     }
     submit() {
-        if (this.state.email.index("@") == -1) {
-            return this.setState({
-                error: true
-            });
-        }
+        // if (this.state.email.index("@") == -1) {
+        //     return this.setState({
+        //         error: true
+        //     });
+        // }
         axios
             .post("/register", {
                 first: this.state.first,
