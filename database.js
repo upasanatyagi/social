@@ -24,3 +24,13 @@ module.exports.allInfo = function(id) {
         [id]
     );
 };
+
+module.exports.addImage = function(id, url) {
+    console.log("in db", id);
+    return db
+        .query(`UPDATE registration SET profilepicture=$2 WHERE id=$1`, [
+            id,
+            url
+        ])
+        .catch(e => console.log(e));
+};

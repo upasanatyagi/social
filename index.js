@@ -90,14 +90,13 @@ app.get("/user", async (req, res) => {
 
 app.post("/upload", uploader.single("image"), s3.upload, function(req, res) {
     //image coming from file data
-    const { username } = req.body;
+    const { userId } = req.session;
+    console.log(req.file);
     const url = `${s3Url}${req.file.filename}`; //url on aws
-    db.addImage(url, username)
-        .then(function({ rows }) {
+    db.addImage(userId, url)
+        .then(function() {
             res.json({
-                username,
-                url,
-                id: rows[0].id
+                profilePicture: url
             });
         })
         .catch(function(err) {
