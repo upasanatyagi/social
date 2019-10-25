@@ -13,6 +13,7 @@ export class App extends React.Component {
             uploaderIsVisible: false
         };
         this.toggleModal = this.toggleModal.bind(this);
+        this.methodInApp = this.methodInApp.bind(this);
     }
     componentDidMount() {
         console.log("App Mounted");
@@ -36,9 +37,9 @@ export class App extends React.Component {
         //     this.setState({uploaderIsVisible:true});
         // }
     }
-    methodInApp(muffin) {
-        console.log("i am a method running in app!!!");
-        console.log("muffin!!", muffin);
+    methodInApp(url) {
+        console.log("method in app url!", url);
+        this.setState({ url: url });
     }
     render() {
         return (
@@ -47,7 +48,7 @@ export class App extends React.Component {
                 <ProfilePic
                     firstName={this.state.first}
                     lastName={this.state.last}
-                    imgUrl={this.state.img}
+                    imgUrl={this.state.url}
                 />
                 {this.state.uploaderIsVisible && (
                     <Uploader methodInApp={this.methodInApp} />

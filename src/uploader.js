@@ -27,7 +27,10 @@ export default class Uploader extends React.Component {
 
         var fd = new FormData();
         fd.append("image", this.state.selectedFile);
-        axios.post("/upload", fd).then();
+        axios.post("/upload", fd).then(({ data }) => {
+            console.log("upload data", data);
+            this.props.methodInApp(data.profilePicture);
+        });
     }
     render() {
         return (

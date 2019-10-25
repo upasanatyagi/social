@@ -20,7 +20,8 @@ module.exports.login = function(email) {
 module.exports.allInfo = function(id) {
     console.log("in db", id);
     return db.query(
-        `SELECT first,last,profilePicture from registration WHERE id=$1`,
+        `SELECT first,last,profilePicture from registration WHERE id=$1
+        `,
         [id]
     );
 };
@@ -28,9 +29,10 @@ module.exports.allInfo = function(id) {
 module.exports.addImage = function(id, url) {
     console.log("in db", id);
     return db
-        .query(`UPDATE registration SET profilepicture=$2 WHERE id=$1`, [
-            id,
-            url
-        ])
+        .query(
+            `UPDATE registration SET profilepicture=$2 WHERE id=$1
+            RETURNING url`,
+            [id, url]
+        )
         .catch(e => console.log(e));
 };
