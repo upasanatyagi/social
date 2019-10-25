@@ -17,6 +17,7 @@ export class App extends React.Component {
     componentDidMount() {
         console.log("App Mounted");
         axios.get("/user").then(({ data }) => {
+            console.log("app data:", data);
             this.setState(data);
         });
 

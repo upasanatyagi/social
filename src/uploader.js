@@ -13,10 +13,12 @@ export default class Uploader extends React.Component {
     muffinMaker() {
         this.props.methodInApp("lots of muffins");
     }
+    uploadImg() {}
     render() {
         return (
             <div>
                 <h3 onClick={() => this.muffinMaker()}> this is uploader</h3>
+                <input type="file" accept="image/*" />;
             </div>
         );
     }
