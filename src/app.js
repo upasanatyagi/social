@@ -1,6 +1,7 @@
 import React from "react";
 import { ProfilePic } from "./profile-pic";
 import Uploader from "./uploader";
+import axios from "./axios";
 
 export class App extends React.Component {
     constructor() {
@@ -8,13 +9,17 @@ export class App extends React.Component {
         this.state = {
             first: "upasana",
             last: "garg",
-            img: " ",
+            img: "",
             uploaderIsVisible: false
         };
         this.toggleModal = this.toggleModal.bind(this);
     }
     componentDidMount() {
         console.log("App Mounted");
+        axios.get("/user").then(({ data }) => {
+            this.setState(data);
+        });
+
         //this is where we want to make an axios request
         //a GET request to a route callled '/user'
         //into state

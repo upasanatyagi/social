@@ -17,3 +17,10 @@ module.exports.login = function(email) {
         [email]
     );
 };
+module.exports.allInfo = function(id) {
+    console.log("in db", id);
+    return db.query(
+        `SELECT first,last,profilePicture from registrations WHERE id=$1`,
+        [id]
+    );
+};
