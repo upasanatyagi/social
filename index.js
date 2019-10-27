@@ -87,6 +87,20 @@ app.get("/user", async (req, res) => {
     //     ({rows}) => res.json(rows[0])
     // )
 });
+app.post("/editBio", (req, res) => {
+    const { userId } = req.session;
+    let { bio } = req.body;
+    console.log("bioText--------->", bio, "----:", userId, req, res);
+    db.addBio(userId, bio)
+        .then(function() {
+            res.json({
+                bio: bio
+            });
+        })
+        .catch(e => {
+            console.log("edit bio e", e);
+        });
+});
 
 app.post("/upload", uploader.single("image"), s3.upload, function(req, res) {
     //image coming from file data

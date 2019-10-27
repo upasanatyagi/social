@@ -6,6 +6,7 @@ CREATE TABLE registration(
     last VARCHAR NOT NULL CHECK(last !=''),
     email VARCHAR NOT NULL UNIQUE,
     password VARCHAR NOT NULL CHECK(password !=''),
-    profilePicture VARCHAR
+    profilePicture VARCHAR,
+    bio TEXT
 
 );

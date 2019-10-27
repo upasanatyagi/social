@@ -36,3 +36,11 @@ module.exports.addImage = function(id, url) {
         )
         .catch(e => console.log(e));
 };
+module.exports.addBio = function(id, bio) {
+    console.log("indbbbbbbbbbb:-", bio);
+    return db.query(
+        `UPDATE registration SET bio=$2 WHERE id=$1
+        RETURNING bio`,
+        [id, bio]
+    );
+};

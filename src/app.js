@@ -1,6 +1,7 @@
 import React from "react";
-import { ProfilePic } from "./profile-pic";
+// import { ProfilePic } from "./profile-pic";
 import Uploader from "./uploader";
+import Profile from "./profile";
 import axios from "./axios";
 
 export class App extends React.Component {
@@ -10,10 +11,14 @@ export class App extends React.Component {
             first: "upasana",
             last: "garg",
             img: "",
-            uploaderIsVisible: false
+            bio: "",
+            uploaderIsVisible: false,
+            textareaIsVisible: false
         };
+        this.toggleBio = this.toggleBio.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
         this.methodInApp = this.methodInApp.bind(this);
+        this.methodInBio = this.methodInBio.bind(this);
     }
     componentDidMount() {
         console.log("App Mounted");
@@ -37,6 +42,13 @@ export class App extends React.Component {
         //     this.setState({uploaderIsVisible:true});
         // }
     }
+    toggleBio() {
+        this.setState({ textareaIsVisible: !this.state.textareaIsVisible });
+    }
+    methodInBio(abc) {
+        console.log("method in bioedit");
+        this.setState({ bio: abc });
+    }
     methodInApp(url) {
         console.log("method in app url!", url);
         this.setState({ url: url });
@@ -44,12 +56,20 @@ export class App extends React.Component {
     render() {
         return (
             <div>
-                <h1 onClick={this.toggleModal}>Hello from App!!</h1>
-                <ProfilePic
+                {
+                    // <h1 onClick={this.toggleModal}>Hello from App!!</h1>
+                }
+                <Profile
                     firstName={this.state.first}
                     lastName={this.state.last}
                     imgUrl={this.state.url}
+                    toggleModal={this.toggleModal}
+                    toggleBio={this.toggleBio}
+                    textareaIsVisible={this.state.textareaIsVisible}
+                    methodInBio={this.methodInBio}
+                    bio={this.state.bio}
                 />
+                {console.log("arararrarabio==>", this.state.bio)}
                 {this.state.uploaderIsVisible && (
                     <Uploader methodInApp={this.methodInApp} />
                 )}
