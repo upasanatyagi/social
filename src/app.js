@@ -1,8 +1,9 @@
 import React from "react";
-// import { ProfilePic } from "./profile-pic";
 import Uploader from "./uploader";
 import Profile from "./profile";
 import axios from "./axios";
+import { BrowserRouter, Route } from "react-router-dom";
+import { OtherProfile } from "./otherprofile";
 
 export class App extends React.Component {
     constructor() {
@@ -15,13 +16,13 @@ export class App extends React.Component {
             uploaderIsVisible: false,
             textareaIsVisible: false
         };
-        this.toggleBio = this.toggleBio.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
         this.methodInApp = this.methodInApp.bind(this);
         this.methodInBio = this.methodInBio.bind(this);
     }
     componentDidMount() {
         console.log("App Mounted");
+        console.log("app props", this.props);
         axios.get("/user").then(({ data }) => {
             console.log("app data:", data);
             this.setState(data);
@@ -42,9 +43,7 @@ export class App extends React.Component {
         //     this.setState({uploaderIsVisible:true});
         // }
     }
-    toggleBio() {
-        this.setState({ textareaIsVisible: !this.state.textareaIsVisible });
-    }
+
     methodInBio(abc) {
         console.log("method in bioedit");
         this.setState({ bio: abc });
@@ -56,23 +55,31 @@ export class App extends React.Component {
     render() {
         return (
             <div>
-                {
-                    // <h1 onClick={this.toggleModal}>Hello from App!!</h1>
-                }
-                <Profile
-                    firstName={this.state.first}
-                    lastName={this.state.last}
-                    imgUrl={this.state.url}
-                    toggleModal={this.toggleModal}
-                    toggleBio={this.toggleBio}
-                    textareaIsVisible={this.state.textareaIsVisible}
-                    methodInBio={this.methodInBio}
-                    bio={this.state.bio}
-                />
-                {console.log("arararrarabio==>", this.state.bio)}
-                {this.state.uploaderIsVisible && (
-                    <Uploader methodInApp={this.methodInApp} />
-                )}
+                <BrowserRouter>
+                    <div>
+                        <Route
+                            exact
+                            path="/"
+                            render={() => (
+                                <Profile
+                                    firstName={this.state.first}
+                                    lastName={this.state.last}
+                                    imgUrl={this.state.url}
+                                    toggleModal={this.toggleModal}
+                                    textareaIsVisible={
+                                        this.state.textareaIsVisible
+                                    }
+                                    methodInBio={this.methodInBio}
+                                    bio={this.state.bio}
+                                />
+                            )}
+                        />
+                        <Route path="/user/:id" component={OtherProfile} />
+                    </div>
+                    {this.state.uploaderIsVisible && (
+                        <Uploader methodInApp={this.methodInApp} />
+                    )}
+                </BrowserRouter>
             </div>
         );
     }

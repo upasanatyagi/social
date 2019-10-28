@@ -7,7 +7,7 @@ export default function Profile({
     lastName,
     imgUrl,
     toggleModal,
-    textareaIsVisible,
+
     toggleBio,
     methodInBio,
     bio
@@ -17,13 +17,11 @@ export default function Profile({
     return (
         <div>
             <h2>
-                {firstName}in profile
+                {firstName}coming profile
                 {lastName}
                 {console.log("-=-=-=-=:", imgUrl)}
                 <img src={imgUrl} alt={"hello"} />
-                in profile
-                <button onClick={() => toggleBio()}>submit</button>
-                <div>{bio}</div>
+                coming profile
             </h2>
             <ProfilePic
                 firstName={firstName}
@@ -31,9 +29,12 @@ export default function Profile({
                 imgUrl={imgUrl}
                 toggleModal={toggleModal}
             />
-            {textareaIsVisible && (
-                <BioEditior toggleBio={toggleBio} methodInBio={methodInBio} />
-            )}
+
+            <BioEditior
+                toggleBio={toggleBio}
+                methodInBio={methodInBio}
+                bio={bio}
+            />
         </div>
     );
 }

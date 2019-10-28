@@ -6,7 +6,7 @@ export function ProfilePic({ firstName, lastName, imgUrl, toggleModal }) {
     return (
         <div>
             <h2>
-                {firstName}in profilepic
+                {firstName}coming profilepic
                 {lastName}
             </h2>
             <img onClick={toggleModal} src={imgUrl} alt={lastName} />

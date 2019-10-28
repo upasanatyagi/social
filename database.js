@@ -20,7 +20,7 @@ module.exports.login = function(email) {
 module.exports.allInfo = function(id) {
     console.log("in db", id);
     return db.query(
-        `SELECT first,last,profilePicture from registration WHERE id=$1
+        `SELECT first,last,profilePicture ,bio from registration WHERE id=$1
         `,
         [id]
     );
