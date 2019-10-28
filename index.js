@@ -87,6 +87,16 @@ app.get("/user", async (req, res) => {
     //     ({rows}) => res.json(rows[0])
     // )
 });
+app.get("/api/user/:id", (req, res) => {
+    console.log("----------------");
+    db.getUser(req.params.id).then(({ rows }) => {
+        // console.log("other res:", rows);
+        if (rows.length > 0) {
+            res.json({});
+        }
+    });
+});
+
 app.post("/editBio", (req, res) => {
     const { userId } = req.session;
     let { bio } = req.body;

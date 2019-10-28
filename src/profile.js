@@ -16,13 +16,6 @@ export default function Profile({
     imgUrl = imgUrl || "/default.jpeg";
     return (
         <div>
-            <h2>
-                {firstName}coming profile
-                {lastName}
-                {console.log("-=-=-=-=:", imgUrl)}
-                <img src={imgUrl} alt={"hello"} />
-                coming profile
-            </h2>
             <ProfilePic
                 firstName={firstName}
                 lastName={lastName}
@@ -35,6 +28,12 @@ export default function Profile({
                 methodInBio={methodInBio}
                 bio={bio}
             />
+
+            <h2>
+                <img id="profileimg" src={imgUrl} alt={"hello"} />
+                {firstName}
+                {lastName}
+            </h2>
         </div>
     );
 }

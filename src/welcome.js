@@ -6,8 +6,13 @@ import Login from "./login";
 export default function Welcome() {
     return (
         <div>
-            <h1>Welcome to</h1>
-            <img src="https://socialbox.agency/wp-content/uploads/2019/09/SB-LOGO.png" />
+            <p id="welcome">Welcome to</p>
+            <div>
+                <img
+                    id="welcome1"
+                    src="https://socialbox.agency/wp-content/uploads/2019/09/SB-LOGO.png"
+                />
+            </div>
 
             <HashRouter>
                 <div>

@@ -27,7 +27,7 @@ module.exports.allInfo = function(id) {
 };
 
 module.exports.addImage = function(id, url) {
-    console.log("in db", id);
+    // console.log("in db", id);
     return db
         .query(
             `UPDATE registration SET profilepicture=$2 WHERE id=$1
@@ -42,5 +42,11 @@ module.exports.addBio = function(id, bio) {
         `UPDATE registration SET bio=$2 WHERE id=$1
         RETURNING bio`,
         [id, bio]
+    );
+};
+module.exports.getUser = function(id) {
+    return db.query(
+        `SELECT  id,first,last,email,profilePicture,bio FROM registration WHERE id=$1`,
+        [id]
     );
 };
