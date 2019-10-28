@@ -41,7 +41,7 @@ export default class Login extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="login">
                 {this.state.error && (
                     <div className="error">oops! That was your fault</div>
                 )}

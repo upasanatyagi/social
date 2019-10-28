@@ -38,6 +38,9 @@ export default class BioEditior extends React.Component {
                     <div>
                         <textarea
                             name="bio"
+                            rows="10"
+                            cols="80"
+                            placeholder="bio here"
                             value={this.state.bioText}
                             onChange={e => this.handleChange(e)}
                         ></textarea>
