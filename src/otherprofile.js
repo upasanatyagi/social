@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "./axios";
+import { ProfilePic } from "./profile-pic";
 
 export class OtherProfile extends React.Component {
     constructor() {
@@ -12,29 +13,27 @@ export class OtherProfile extends React.Component {
 
         axios
             .get(`/api/user/${this.props.match.params.id}`)
-            .then(({ data }) => {
-                if (data.redirect) {
+            .then(res => {
+                console.log(" other profile res", res);
+                if (res.data.redirectMe) {
                     this.props.history.push("/");
                 } else {
-                    this.setState(data);
+                    this.setState(res.data);
                 }
             })
             .catch(e => {
                 console.log(e);
                 this.history.push("/");
             });
-        //make an axios req asking the server for info about the this.props.match.params.id
-        //if there is no  user with that id..redirect them back to /.
-        //and the user is trying to visit their main page redirect them back to /.
-        //if (this.props.match.params.id == 6) {
-        //imagin i am logged in as user 6
-        //this.props.history.push("/");
-        //}
     }
     render() {
         return (
-            <div className="profile">
-                <h1>Hello from other Profile</h1>
+            <div className="otherprofile">
+                <h1>
+                    {this.state.first} {this.state.last}
+                </h1>
+                <h2>{this.state.bio}</h2>
+                <ProfilePic imgUrl={this.state.profilepicture} />
             </div>
         );
     }

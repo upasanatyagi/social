@@ -83,3 +83,7 @@ body {
     font-size: 18px;
     color: Indigo;
 }
+
+.profile {
+    display: flex;
+}

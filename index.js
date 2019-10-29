@@ -88,11 +88,17 @@ app.get("/user", async (req, res) => {
     // )
 });
 app.get("/api/user/:id", (req, res) => {
-    console.log("----------------");
-    db.getUser(req.params.id).then(({ rows }) => {
-        // console.log("other res:", rows);
-        if (rows.length > 0) {
-            res.json({});
+    console.log("req.session.userId", req.session.userId);
+    console.log("req.params.id", req.params.id);
+    db.getUser(Number(req.params.id)).then(({ rows }) => {
+        if (!rows[0]) {
+            console.log("id not found");
+            res.json({ redirectMe: true });
+        } else if (rows[0].id === req.session.userId) {
+            console.log("matchingId");
+            res.json({ redirectMe: true });
+        } else {
+            res.json(rows[0]);
         }
     });
 });

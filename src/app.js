@@ -1,6 +1,7 @@
 import React from "react";
 import Uploader from "./uploader";
 import Profile from "./profile";
+import { ProfilePic } from "./profile-pic";
 import axios from "./axios";
 import { BrowserRouter, Route } from "react-router-dom";
 import { OtherProfile } from "./otherprofile";
@@ -57,6 +58,7 @@ export class App extends React.Component {
             <div>
                 <BrowserRouter>
                     <div>
+                        <ProfilePic imgUrl={this.state.url} />
                         <Route
                             exact
                             path="/"
@@ -74,7 +76,16 @@ export class App extends React.Component {
                                 />
                             )}
                         />
-                        <Route path="/user/:id" component={OtherProfile} />
+                        <Route
+                            path="/user/:id"
+                            render={props => (
+                                <OtherProfile
+                                    key={props.match.url}
+                                    match={props.match}
+                                    history={props.history}
+                                />
+                            )}
+                        />
                     </div>
                     {this.state.uploaderIsVisible && (
                         <Uploader methodInApp={this.methodInApp} />
