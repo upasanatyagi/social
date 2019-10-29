@@ -76,18 +76,17 @@ app.get("/welcome", function(req, res) {
 //     res.render("register");
 // });
 
-app.get("/api/users", async (req, res) => {
-    try {
-        const { rows } = await db.matches();
-        console.log();
-        // res.json(rows);
-    } catch (err) {
-        console.log(err);
-        res.sendStatus(500);
-    }
-    // db.getUserById(req.session.userId).then(
-    //     ({rows}) => res.json(rows[0])
-    // )
+app.get("/api/users", (req, res) => {
+    db.latestUsers(req.session.userId).then(result => {
+        console.log("latest users:", result.rows);
+        res.json(result.rows);
+    });
+});
+app.get("/api/users/:input", (req, res) => {
+    db.matches(req.params.input).then(result => {
+        console.log("users", result);
+        res.json(result.rows);
+    });
 });
 
 app.get("/user", async (req, res) => {

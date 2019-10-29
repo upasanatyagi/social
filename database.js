@@ -50,9 +50,19 @@ module.exports.getUser = function(id) {
         [id]
     );
 };
-module.exports.matches = function(val) {
+module.exports.matches = function(input) {
     return db.query(
-        `SELECT  id,first,last,profilePicture FROM registration WHERE first ILIKE $1 `,
-        [val + "%"]
+        `SELECT  id,first,last,profilepicture FROM registration WHERE first ILIKE $1 `,
+        [input + "%"]
+    );
+};
+module.exports.latestUsers = function(id) {
+    return db.query(
+        `SELECT  id,first,last,profilepicture
+         FROM registration
+         WHERE id != $1
+         ORDER BY id DESC
+         LIMIT 3 `,
+        [id]
     );
 };
