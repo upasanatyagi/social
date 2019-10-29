@@ -50,3 +50,9 @@ module.exports.getUser = function(id) {
         [id]
     );
 };
+module.exports.matches = function(val) {
+    return db.query(
+        `SELECT  id,first,last,profilePicture FROM registration WHERE first ILIKE $1 `,
+        [val + "%"]
+    );
+};

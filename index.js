@@ -75,6 +75,21 @@ app.get("/welcome", function(req, res) {
 // app.get("/register", (req, res) => {
 //     res.render("register");
 // });
+
+app.get("/api/users", async (req, res) => {
+    try {
+        const { rows } = await db.matches();
+        console.log();
+        // res.json(rows);
+    } catch (err) {
+        console.log(err);
+        res.sendStatus(500);
+    }
+    // db.getUserById(req.session.userId).then(
+    //     ({rows}) => res.json(rows[0])
+    // )
+});
+
 app.get("/user", async (req, res) => {
     try {
         const { rows } = await db.allInfo(req.session.userId);

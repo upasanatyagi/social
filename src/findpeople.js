@@ -1,20 +1,37 @@
 import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
 import axios from "./axios";
 
-function FindPeople() {
-    const [name, setName] = useState("World");
-    const [last, setLast] = useState("Garg");
-    setName("Lucky");
-    setLast("Puppy");
+export default function FindPeople() {
+    const [userInput, setUserInput] = useState("");
+
+    useEffect(() => {
+        let ignore = false;
+        if (userInput !== "") {
+            (async () => {
+                console.log("userInput", userInput);
+                const { data } = await axios.get(`/api/users/${userInput}`);
+                if (!ignore) {
+                    setUserInput(data);
+                } else {
+                    console.log("ignored!!!!!");
+                }
+            })();
+        }
+        return () => {
+            ignore = true;
+        };
+    }, [userInput]);
     return (
         <div>
-            <h1>
-                Hello,{name}
-                {last}!
-            </h1>
-            <input type="text" onChange={e => setName(e.target.value)} />
-            <input type="text" onChange={e => setLast(e.target.value)} />
+            <p>Look who has joined!!</p>
+            <input type="text" onChange={e => setUserInput(e.target.value)} />
         </div>
     );
 }
+
+//
+// {users.map(user => (
+//     <div>{/* ... */}</div>
+// ))}
+//
+// {/* ... */}
