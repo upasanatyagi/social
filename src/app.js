@@ -6,6 +6,7 @@ import axios from "./axios";
 import { BrowserRouter, Route } from "react-router-dom";
 import { OtherProfile } from "./otherprofile";
 import FindPeople from "./findpeople";
+// import FriendButton from './friendbutton';
 
 export class App extends React.Component {
     constructor() {

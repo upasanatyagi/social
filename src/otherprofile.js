@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "./axios";
 import { ProfilePic } from "./profile-pic";
+import FriendButton from "./friendbutton";
 
 export class OtherProfile extends React.Component {
     constructor() {
@@ -34,6 +35,12 @@ export class OtherProfile extends React.Component {
                 </h1>
                 <h2>{this.state.bio}</h2>
                 <ProfilePic imgUrl={this.state.profilepicture} />
+                <div>
+                    <FriendButton
+                        const
+                        userProfileId={this.props.match.params.id}
+                    />
+                </div>
             </div>
         );
     }

@@ -66,3 +66,18 @@ module.exports.latestUsers = function(id) {
         [id]
     );
 };
+module.exports.initalStatus = function(sender_id, receiver_id) {
+    return db.query(
+        ` SELECT * FROM friendships
+  WHERE (receiver_id = $1 AND sender_id = $2)
+  OR (receiver_id = $2 AND sender_id = $1)`,
+        [sender_id, receiver_id]
+    );
+};
+module.exports.letsBeFriends = function(receiver_id, sender_id) {
+    return db.query(
+        ` INSERT INTO  friendships
+  (receiver_id, sender_id ) VALUES ($1,$2)`,
+        [receiver_id, sender_id]
+    );
+};

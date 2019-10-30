@@ -75,6 +75,22 @@ app.get("/welcome", function(req, res) {
 // app.get("/register", (req, res) => {
 //     res.render("register");
 // });
+app.get("/findrelation/:id", function(req, res) {
+    console.log("userId", typeof req.session.userId);
+    console.log("userProfileId", Number(req.params.id));
+    db.initalStatus(req.session.userId, Number(req.params.id)).then(rows => {
+        console.log("rows:", rows);
+        res.json({ relation: false });
+    });
+});
+app.post("/sendfriendrequest/:id", function(req, res) {
+    console.log("userId", typeof req.session.userId);
+    console.log("userProfileId", Number(req.params.id));
+    db.letsBeFriends(req.session.userId, Number(req.params.id)).then(rows => {
+        console.log("makefriends", rows);
+        // res.json({ relation: false });
+    });
+});
 
 app.get("/api/users", (req, res) => {
     db.latestUsers(req.session.userId).then(result => {
