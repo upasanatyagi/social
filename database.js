@@ -30,8 +30,8 @@ module.exports.addImage = function(id, url) {
     // console.log("in db", id);
     return db
         .query(
-            `UPDATE registration SET profilepicture=$2 WHERE id=$1
-            RETURNING url`,
+            `UPDATE registration SET profilePicture=$2 WHERE id=$1
+            RETURNING profilePicture`,
             [id, url]
         )
         .catch(e => console.log(e));
@@ -78,6 +78,19 @@ module.exports.letsBeFriends = function(receiver_id, sender_id) {
     return db.query(
         ` INSERT INTO  friendships
   (receiver_id, sender_id ) VALUES ($1,$2)`,
+        [receiver_id, sender_id]
+    );
+};
+module.exports.acceptFriend = function(receiver_id, sender_id) {
+    return db.query(
+        `UPDATE friendships SET accepted = true WHERE receiver_id = $1 AND sender_id= $2`,
+        [receiver_id, sender_id]
+    );
+};
+module.exports.letsNotBeFriends = function(receiver_id, sender_id) {
+    return db.query(
+        `DELETE FROM friendships WHERE receiver_id = $1 AND sender_id= $2
+        OR (receiver_id = $2 AND sender_id = $1)`,
         [receiver_id, sender_id]
     );
 };

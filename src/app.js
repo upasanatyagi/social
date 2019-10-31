@@ -15,6 +15,7 @@ export class App extends React.Component {
             first: "upasana",
             last: "garg",
             img: "",
+            url: "",
             bio: "",
             uploaderIsVisible: false,
             textareaIsVisible: false
@@ -60,7 +61,7 @@ export class App extends React.Component {
             <div>
                 <BrowserRouter>
                     <div>
-                        <ProfilePic imgUrl={this.state.url} />
+                        <ProfilePic imgUrl={this.state.profilepicture} />
                         <Route
                             exact
                             path="/"
@@ -68,7 +69,7 @@ export class App extends React.Component {
                                 <Profile
                                     firstName={this.state.first}
                                     lastName={this.state.last}
-                                    imgUrl={this.state.url}
+                                    imgUrl={this.state.profilepicture}
                                     toggleModal={this.toggleModal}
                                     textareaIsVisible={
                                         this.state.textareaIsVisible

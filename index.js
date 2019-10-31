@@ -76,20 +76,52 @@ app.get("/welcome", function(req, res) {
 //     res.render("register");
 // });
 app.get("/findrelation/:id", function(req, res) {
-    console.log("userId", typeof req.session.userId);
-    console.log("userProfileId", Number(req.params.id));
+    // console.log("userId", typeof req.session.userId);
+    // console.log("userProfileId", Number(req.params.id));
     db.initalStatus(req.session.userId, Number(req.params.id)).then(rows => {
-        console.log("rows:", rows);
-        res.json({ relation: false });
+        console.log("rows:", rows.rows.length);
+        if (rows.rows.length == 0) {
+            res.json({ relation: false });
+        } else {
+            res.json(rows.rows[0]);
+        }
     });
 });
 app.post("/sendfriendrequest/:id", function(req, res) {
+    // console.log("userId", typeof req.session.userId);
+    // console.log("userProfileId", Number(req.params.id));
+    db.letsBeFriends(Number(req.params.id), req.session.userId)
+        .then(rows => {
+            // console.log("makefriends", rows);
+            res.json(rows);
+        })
+        .catch(e => {
+            console.log("error in sendfriendrequest", e);
+        });
+});
+app.post("/acceptfriendrequest/:id", function(req, res) {
+    // console.log("userId", typeof req.session.userId);
+    // console.log("userProfileId", Number(req.params.id));
+    db.acceptFriend(req.session.userId, Number(req.params.id))
+        .then(rows => {
+            // console.log("friendaccepted", rows);
+            res.json(rows);
+        })
+        .catch(e => {
+            console.log("friendnot accepted", e);
+        });
+});
+app.post("/endfriendship/:id", function(req, res) {
     console.log("userId", typeof req.session.userId);
     console.log("userProfileId", Number(req.params.id));
-    db.letsBeFriends(req.session.userId, Number(req.params.id)).then(rows => {
-        console.log("makefriends", rows);
-        // res.json({ relation: false });
-    });
+    db.letsNotBeFriends(req.session.userId, Number(req.params.id))
+        .then(rows => {
+            console.log("friendship ended", rows);
+            res.json(rows);
+        })
+        .catch(e => {
+            console.log("friendnot accepted", e);
+        });
 });
 
 app.get("/api/users", (req, res) => {
@@ -154,10 +186,9 @@ app.post("/upload", uploader.single("image"), s3.upload, function(req, res) {
     console.log(req.file);
     const url = `${s3Url}${req.file.filename}`; //url on aws
     db.addImage(userId, url)
-        .then(function() {
-            res.json({
-                profilePicture: url
-            });
+        .then(function({ rows }) {
+            console.log("uploader rows", rows);
+            res.json(rows[0]);
         })
         .catch(function(err) {
             console.log(err);

@@ -26,6 +26,9 @@ export class OtherProfile extends React.Component {
                 console.log(e);
                 this.history.push("/");
             });
+        if (this.props.match.params.id == this.state.id) {
+            this.props.history.push("/");
+        }
     }
     render() {
         return (

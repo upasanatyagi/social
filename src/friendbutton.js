@@ -3,7 +3,6 @@ import axios from "./axios";
 
 export default function FriendButton({ userProfileId }) {
     console.log("userProfileId", userProfileId);
-    const [count, setCount] = useState(0);
     const [status, setStatus] = useState("");
 
     useEffect(() => {
@@ -12,23 +11,43 @@ export default function FriendButton({ userProfileId }) {
             console.log("data", data);
             if (data.relation == false) {
                 setStatus("Make friend request");
+            } else if (data.accepted == true) {
+                setStatus("End Friendship");
+            } else if (data.accepted == false) {
+                if (data.sender_id == userProfileId) {
+                    setStatus("Accept");
+                } else if (data.receiver_id == userProfileId) {
+                    setStatus("Cancel");
+                }
             }
         })();
-    });
-    function click() {
+    }, []);
+    const click = async function() {
         console.log("i am cicked");
-        (async () => {
+        if (status == "Make friend request") {
             const { data } = await axios.post(
                 `/sendfriendrequest/${userProfileId}`
             );
-        })();
-    }
+            setStatus("Cancel");
+        } else if (status == "Accept") {
+            // console.log("data", data);
+            const { data } = await axios.post(
+                `/acceptfriendrequest/${userProfileId}`
+            );
+            setStatus("End Friendship");
+        } else if (status == "End Friendship" || "Cancel") {
+            console.log("clicked cancel", data);
+            const { data } = await axios.post(
+                `/endfriendship/${userProfileId}`
+            );
+            setStatus("Make friend request");
+        }
+    };
 
     return (
         <div>
             <div>
-                <p>You clicked {count} times</p>
-                <button onClick={() => click(count + 1)}>{status}</button>
+                <button onClick={click}>{status}</button>
             </div>
         </div>
     );
