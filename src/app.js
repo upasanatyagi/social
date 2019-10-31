@@ -15,7 +15,7 @@ export class App extends React.Component {
             first: "upasana",
             last: "garg",
             img: "",
-            url: "",
+            profilepicture: "",
             bio: "",
             uploaderIsVisible: false,
             textareaIsVisible: false
@@ -24,13 +24,12 @@ export class App extends React.Component {
         this.methodInApp = this.methodInApp.bind(this);
         this.methodInBio = this.methodInBio.bind(this);
     }
-    componentDidMount() {
+    async componentDidMount() {
         console.log("App Mounted");
         console.log("app props", this.props);
-        axios.get("/user").then(({ data }) => {
-            console.log("app data:", data);
-            this.setState(data);
-        });
+        const { data } = await axios.get("/user");
+
+        this.setState(data);
 
         //this is where we want to make an axios request
         //a GET request to a route callled '/user'
@@ -54,14 +53,26 @@ export class App extends React.Component {
     }
     methodInApp(url) {
         console.log("method in app url!", url);
-        this.setState({ url: url });
+        this.setState({ profilepicture: url });
     }
     render() {
         return (
             <div>
                 <BrowserRouter>
                     <div>
-                        <ProfilePic imgUrl={this.state.profilepicture} />
+                        <div className="profile-pic">
+                            <div>
+                                <img
+                                    id="profilelogo"
+                                    src="https://socialbox.agency/wp-content/uploads/2019/09/SB-LOGO.png"
+                                />
+                            </div>
+
+                            <ProfilePic
+                                imgUrl={this.state.profilepicture}
+                                toggleModal={this.toggleModal}
+                            />
+                        </div>
                         <Route
                             exact
                             path="/"

@@ -13,3 +13,24 @@ page 1
 2.will do switch between login and register , will use library
 3.logo in welcome component(not necessary)
 4.use url to determine if the person are logged in or not, if logged in let them go whereever they want except register
+REDUX
+// always return state
+function myReducer(state={}, action){
+
+    if(action.type == 'UPDATE_BIO'){
+     state= {
+        ...state,
+        user:{
+        ...state.user,
+           bio: action.bio
+        }
+     };
+    }
+    if (action.type == 'SHOW_BIO_TEXTAREA'){
+        state = {
+            ...state,
+            bioEditorTextareaIsVisible: true
+        }
+    }
+    return state;
+}

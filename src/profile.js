@@ -28,12 +28,11 @@ export default function Profile({
                 methodInBio={methodInBio}
                 bio={bio}
             />
-
-            <h2>
-                <img id="profileimg" src={imgUrl} alt={"hello"} />
-                {firstName}
-                {lastName}
-            </h2>
         </div>
     );
 }
+// <h2>
+//     <img id="profileimg" src={imgUrl} alt={"hello"} />
+//     {firstName}
+//     {lastName}
+// </h2>
