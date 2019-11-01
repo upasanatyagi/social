@@ -29,11 +29,13 @@ export default function FindPeople() {
         };
     }, [userInput]);
     return (
-        <div>
-            <ul>
+        <div className="mainfindppl">
+            <p>Are you looking for some one in particular!!</p>
+            <input type="text" onChange={e => setUserInput(e.target.value)} />
+            <ul id="fpbox">
                 {users.map(user => (
                     <li key={user.first}>
-                        <img src={user.profilepicture} />
+                        <img id="findpeople" src={user.profilepicture} />
                         <h3>
                             {user.first}
                             {user.last}
@@ -41,8 +43,6 @@ export default function FindPeople() {
                     </li>
                 ))}
             </ul>
-            <p>Look who has joined!!</p>
-            <input type="text" onChange={e => setUserInput(e.target.value)} />
         </div>
     );
 }

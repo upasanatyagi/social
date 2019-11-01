@@ -1,9 +1,10 @@
 body {
-    background-image: url('https://images.unsplash.com/photo-1507608869274-d3177c8bb4c7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+    /* background-image: url('octagon-5192.mp4'); */
     /* object-fit: cover; */
     height: 100%;
     width: 100%;
     background-size: cover;
+    background-color: orchid;
 }
 
 #registration {
@@ -89,4 +90,26 @@ body {
 
 .profile {
     display: flex;
+}
+
+#findpeople {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    border: 2px solid black;
+}
+
+.mainfindppl {
+    height: 800px;
+    width: 300px;
+    padding: 3px;
+}
+
+#fpbox {
+    height: 500px;
+    width: 250px;
+    padding: 5px;
+    background: thistle;
+    text-align: center;
+    overflow-y: scroll;
 }
