@@ -75,11 +75,21 @@ app.get("/welcome", function(req, res) {
 // app.get("/register", (req, res) => {
 //     res.render("register");
 // });
+app.get("/receivefriendswannabes", function(req, res) {
+    db.friendsnwannabes(req.session.userId)
+        .then(({ rows }) => {
+            console.log("index rows", rows);
+            res.json(rows);
+        })
+        .catch(e => {
+            console.log("error in friends and wannabes", e);
+        });
+});
 app.get("/findrelation/:id", function(req, res) {
     // console.log("userId", typeof req.session.userId);
     // console.log("userProfileId", Number(req.params.id));
     db.initalStatus(req.session.userId, Number(req.params.id)).then(rows => {
-        console.log("rows:", rows.rows.length);
+        // console.log("rows:", rows.rows.length);
         if (rows.rows.length == 0) {
             res.json({ relation: false });
         } else {

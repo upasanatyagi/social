@@ -6,6 +6,7 @@ import axios from "./axios";
 import { BrowserRouter, Route } from "react-router-dom";
 import { OtherProfile } from "./otherprofile";
 import FindPeople from "./findpeople";
+import Friends from "./friends.js";
 // import FriendButton from './friendbutton';
 
 export class App extends React.Component {
@@ -30,21 +31,10 @@ export class App extends React.Component {
         const { data } = await axios.get("/user");
 
         this.setState(data);
-
-        //this is where we want to make an axios request
-        //a GET request to a route callled '/user'
-        //into state
-        //this.setState()
     }
     toggleModal() {
         console.log("i am toggleModal");
         this.setState({ uploaderIsVisible: !this.state.uploaderIsVisible });
-
-        // if(this.uploaderIsVisible){
-        //     this.setState({uploaderIsVisible:false});
-        // }else{
-        //     this.setState({uploaderIsVisible:true});
-        // }
     }
 
     methodInBio(abc) {
@@ -104,6 +94,16 @@ export class App extends React.Component {
                             path="/users"
                             render={props => (
                                 <FindPeople
+                                    key={props.match.url}
+                                    match={props.match}
+                                    history={props.history}
+                                />
+                            )}
+                        />
+                        <Route
+                            path="/friends"
+                            render={props => (
+                                <Friends
                                     key={props.match.url}
                                     match={props.match}
                                     history={props.history}

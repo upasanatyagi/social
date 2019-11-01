@@ -94,3 +94,15 @@ module.exports.letsNotBeFriends = function(receiver_id, sender_id) {
         [receiver_id, sender_id]
     );
 };
+module.exports.friendsnwannabes = function(id) {
+    return db.query(
+        `SELECT registration.id, first, last, profilePicture, accepted
+        FROM friendships
+        JOIN registration
+        ON (accepted = false AND receiver_id = $1 AND sender_id = registration.id)
+        OR (accepted = true AND receiver_id = $1 AND sender_id = registration.id)
+        OR (accepted = true AND sender_id = $1 AND receiver_id = registration.id)
+        `,
+        [id]
+    );
+};

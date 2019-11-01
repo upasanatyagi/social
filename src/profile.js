@@ -7,7 +7,6 @@ export default function Profile({
     lastName,
     imgUrl,
     toggleModal,
-
     toggleBio,
     methodInBio,
     bio
@@ -15,24 +14,22 @@ export default function Profile({
     console.log("props in profile pic:", bio);
     imgUrl = imgUrl || "/default.jpeg";
     return (
-        <div>
-            <ProfilePic
-                firstName={firstName}
-                lastName={lastName}
-                imgUrl={imgUrl}
-                toggleModal={toggleModal}
-            />
-
-            <BioEditior
-                toggleBio={toggleBio}
-                methodInBio={methodInBio}
-                bio={bio}
-            />
+        <div className="myProfileDisplay">
+            <div id="mypropic">
+                <ProfilePic
+                    firstName={firstName}
+                    lastName={lastName}
+                    imgUrl={imgUrl}
+                    toggleModal={toggleModal}
+                />
+            </div>
+            <div>
+                <BioEditior
+                    toggleBio={toggleBio}
+                    methodInBio={methodInBio}
+                    bio={bio}
+                />
+            </div>
         </div>
     );
 }
-// <h2>
-//     <img id="profileimg" src={imgUrl} alt={"hello"} />
-//     {firstName}
-//     {lastName}
-// </h2>
