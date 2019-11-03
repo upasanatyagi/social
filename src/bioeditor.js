@@ -32,14 +32,14 @@ export default class BioEditior extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div className="bioMain">
                 <h3> bio editor</h3>
                 {this.state.textareaIsVisible && (
                     <div>
                         <textarea
                             name="bio"
                             rows="10"
-                            cols="80"
+                            cols="50"
                             placeholder="bio here"
                             value={this.state.bioText}
                             onChange={e => this.handleChange(e)}

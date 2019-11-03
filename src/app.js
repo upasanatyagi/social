@@ -57,11 +57,12 @@ export class App extends React.Component {
                                     src="https://socialbox.agency/wp-content/uploads/2019/09/SB-LOGO.png"
                                 />
                             </div>
-
-                            <ProfilePic
-                                imgUrl={this.state.profilepicture}
-                                toggleModal={this.toggleModal}
-                            />
+                            <div className="headerPic">
+                                <ProfilePic
+                                    imgUrl={this.state.profilepicture}
+                                    toggleModal={this.toggleModal}
+                                />
+                            </div>
                         </div>
                         <Route
                             exact

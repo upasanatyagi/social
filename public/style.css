@@ -9,24 +9,49 @@ body {
 
 #registration {
     display: flex;
-    padding-bottom: 1.25rem;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
 }
 
 #registration input {
-    margin: 0 .25rem;
     height: 50px;
     font-size: 20px;
-    min-width: 125px;
-    border: 1px solid #eee;
-    border-left: 3px solid;
+    width: 330px;
+    margin: 5px;
+    border: 1px solid #000;
+    text-align: center;
     border-radius: 5px;
     transition: border-color .5s ease-out;
 }
 
-.login input, button {
-    /* background-color: red; */
+#btnlogin {
+    display: flex;
+    width: 330px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btnSubmit {
+    margin: 0;
+    height: 35px;
+    width: 100px;
+}
+
+.login {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.login input {
     margin: 0 auto;
     display: block;
+    text-align: center;
+    height: 30px;
+    width: 250px;
+    margin-bottom: 5px;
+    border: 1px solid black;
 }
 
 .login input:focus {
@@ -58,8 +83,8 @@ body {
 }
 
 #smallimg {
-    height: 90px;
-    width: 100px;
+    height: 100%;
+    width: 100%;
     margin-right: 30px;
     border-radius: 10px;
     padding-bottom: 5px;
@@ -70,20 +95,18 @@ body {
     font-size: 40px;
     text-align: center;
     color: BlueViolet;
+    margin-bottom: 10px;
 }
 
 #welcome1 {
-    align: center;
-    height: 590px;
-    width: 1050px;
+    height: 500px;
+    width: 980px;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    marging-top: 100px;
 }
 
 #loginline {
-    text-align: center;
     font-size: 18px;
     color: Indigo;
 }
@@ -100,9 +123,25 @@ body {
 }
 
 .mainfindppl {
-    height: 800px;
-    width: 300px;
+    width: 400px;
     padding: 3px;
+    margin-left: 700px;
+    margin-top: 20px;
+    display: flex;
+    background: green;
+    flex-direction: column;
+    align-items: center;
+}
+
+.otherprofile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.otherProfilePic {
+    height: 450px;
+    width: 350px;
 }
 
 #fpbox {
@@ -114,14 +153,40 @@ body {
     overflow-y: scroll;
 }
 
-.myProfileDisplay {}
+.myProfileDisplay {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 60px;
+}
 
-/* .wrapper {
+.bioMain {
+    height: 150px;
+    width: 415px;
+}
+
+.wrapper {
     position: relative;
-    overflow: hidden;
-    width: 100px;
-    height: 100px;
+    width: 300px;
+    height: 200px;
+    background-color: crimson;
+    text-align: center;
+    border-radius: 5px;
+    animation-name: abc;
+    left: 50%;
+    top: -400px;
+    animation-duration: 2s;
     border: 1px solid black;
+}
+
+@keyframes abc {
+    0% {
+        left: 100%;
+    }
+
+    100% {
+        left: 50%;
+    }
 }
 
 #slide {
@@ -133,12 +198,20 @@ body {
     transition: 1s;
 }
 
-.wrapper:hover #slide {
+.wrapper #slide {
     transition: 1s;
     left: 0;
-} */
+}
+
 #mypropic {
     background-color: green;
-    height: 200px;
-    width: 200px;
+    height: 500px;
+    width: 400px;
+}
+
+.headerPic {
+    height: 90px;
+    width: 90px;
+    margin: 5px;
+    margin-right: 15px;
 }
