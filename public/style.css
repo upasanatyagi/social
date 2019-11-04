@@ -206,8 +206,8 @@ body {
     text-align: center;
     border-radius: 5px;
     animation-name: abc;
-    left: 50%;
-    top: -614px;
+    left: 80%;
+    top: -559px;
     animation-duration: 2s;
     border: 1px solid black;
 }
@@ -224,7 +224,7 @@ body {
     }
 
     100% {
-        left: 50%;
+        left: 80%;
     }
 }
 
