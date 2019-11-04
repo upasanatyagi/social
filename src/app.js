@@ -57,6 +57,21 @@ export class App extends React.Component {
                                     src="https://socialbox.agency/wp-content/uploads/2019/09/SB-LOGO.png"
                                 />
                             </div>
+                            <div>
+                                <a id="findpeople" href="/users">
+                                    Find people
+                                </a>
+                            </div>
+                            <div>
+                                <a id="myfriends" href="/friends">
+                                    My Friends and Wannabes
+                                </a>
+                            </div>
+                            <div>
+                                <a id="logout" href="/logout">
+                                    Log Out
+                                </a>
+                            </div>
                             <div className="headerPic">
                                 <ProfilePic
                                     imgUrl={this.state.profilepicture}

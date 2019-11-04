@@ -2,6 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { App } from "./app";
 import Welcome from "./welcome";
+import * as io from "socket.io-client";
+
+const socket = io.connect();
+
+// socket.emitt("iAmHere", {
+//     message: "Hello"
+// });
+//
+// socket.on;
 
 //Redux middleware
 import { createStore, applyMiddleware } from "redux";

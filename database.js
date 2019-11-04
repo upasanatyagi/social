@@ -90,7 +90,8 @@ module.exports.acceptFriend = function(receiver_id, sender_id) {
 module.exports.letsNotBeFriends = function(receiver_id, sender_id) {
     return db.query(
         `DELETE FROM friendships WHERE receiver_id = $1 AND sender_id= $2
-        OR (receiver_id = $2 AND sender_id = $1)`,
+        OR (receiver_id = $2 AND sender_id = $1)
+        RETURNING *`,
         [receiver_id, sender_id]
     );
 };

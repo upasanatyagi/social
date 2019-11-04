@@ -1,27 +1,30 @@
 import React, { useEffect } from "react";
 // import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import { receiveUsers, acceptFriend, unfriend } from "./actions";
+import { receiveUsers, acceptfriendrequest, unfriend } from "./actions";
 
 export default function Friends() {
     const dispatch = useDispatch();
-    const users = useSelector(state => state.all);
+    // const users = useSelector(state => state.users);
+    // console.log("friends state", users);
 
     const friends = useSelector(
-        state =>
-            state.all && state.all.filter(friend => friend.accepted == true)
+        state => state.users && state.users.filter(user => user.accepted)
     );
     console.log("friends friends", friends);
     const wannabes = useSelector(
-        state =>
-            state.all && state.all.filter(friend => friend.accepted == false)
+        state => state.users && state.users.filter(user => !user.accepted)
     );
+    console.log("friends wannabes", wannabes);
 
     useEffect(() => {
         dispatch(receiveUsers());
     }, []);
 
-    if (!users) {
+    if (!friends) {
+        return null;
+    }
+    if (!wannabes) {
         return null;
     }
 
@@ -29,11 +32,13 @@ export default function Friends() {
         <div>
             <div className="friends">
                 <h3>My friends!!</h3>
-                {friends.map(user => (
-                    <div className="user" key={user.id}>
-                        <img src={user.profilepicture} />
+                {friends.map(friend => (
+                    <div className="user" key={friend.id}>
+                        <img src={friend.profilepicture} />
                         <div className="buttons">
-                            <button onClick={e => dispatch(unfriend(user.id))}>
+                            <button
+                                onClick={() => dispatch(unfriend(friend.id))}
+                            >
                                 Unfriend
                             </button>
                         </div>
@@ -42,12 +47,14 @@ export default function Friends() {
             </div>
             <div className="wannabes">
                 <h3>My wannabes</h3>
-                {wannabes.map(user => (
-                    <div className="user" key={user.id}>
-                        <img src={user.profilepicture} />
+                {wannabes.map(wannabe => (
+                    <div className="user" key={wannabe.id}>
+                        <img src={wannabe.profilepicture} />
                         <div className="buttons">
                             <button
-                                onClick={e => dispatch(acceptFriend(user.id))}
+                                onClick={() =>
+                                    dispatch(acceptfriendrequest(wannabe.id))
+                                }
                             >
                                 Accept Friend
                             </button>

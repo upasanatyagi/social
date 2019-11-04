@@ -35,7 +35,10 @@ export default class Uploader extends React.Component {
     render() {
         return (
             <div className="wrapper">
-                <h3 onClick={() => this.muffinMaker()}> this is uploader</h3>
+                <h3 onClick={() => this.muffinMaker()}>
+                    {" "}
+                    Please uploade your picture here
+                </h3>
                 <input
                     type="file"
                     accept="image/*"

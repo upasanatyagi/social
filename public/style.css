@@ -1,10 +1,9 @@
 body {
-    /* background-image: url('octagon-5192.mp4'); */
-    /* object-fit: cover; */
     height: 100%;
     width: 100%;
     background-size: cover;
-    background-color: orchid;
+    background-color: PaleGreen;
+    margin: 0;
 }
 
 #registration {
@@ -52,6 +51,7 @@ body {
     width: 250px;
     margin-bottom: 5px;
     border: 1px solid black;
+    font-size: 18px;
 }
 
 .login input:focus {
@@ -86,7 +86,7 @@ body {
     height: 100%;
     width: 100%;
     margin-right: 30px;
-    border-radius: 10px;
+    border-radius: 57px;
     padding-bottom: 5px;
 }
 
@@ -107,8 +107,12 @@ body {
 }
 
 #loginline {
-    font-size: 18px;
+    font-size: 30px;
     color: Indigo;
+}
+
+#logsub {
+    background: green;
 }
 
 .profile {
@@ -128,7 +132,6 @@ body {
     margin-left: 700px;
     margin-top: 20px;
     display: flex;
-    background: green;
     flex-direction: column;
     align-items: center;
 }
@@ -169,19 +172,19 @@ body {
     position: relative;
     width: 300px;
     height: 200px;
-    background-color: crimson;
+    background-color: DarkSalmon;
     text-align: center;
     border-radius: 5px;
     animation-name: abc;
     left: 50%;
-    top: -400px;
+    top: -614px;
     animation-duration: 2s;
     border: 1px solid black;
 }
 
 @keyframes abc {
     0% {
-        left: 100%;
+        left: 90%;
     }
 
     100% {
@@ -204,7 +207,6 @@ body {
 }
 
 #mypropic {
-    background-color: green;
     height: 500px;
     width: 400px;
 }
@@ -215,3 +217,5 @@ body {
     margin: 5px;
     margin-right: 15px;
 }
+
+#logout {}

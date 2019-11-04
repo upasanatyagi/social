@@ -39,7 +39,12 @@ export default function FindPeople() {
                 <ul id="fpbox">
                     {users.map(user => (
                         <li key={user.first}>
-                            <img id="findpeople" src={user.profilepicture} />
+                            <a href={"/user/" + user.id}>
+                                <img
+                                    id="findpeople"
+                                    src={user.profilepicture}
+                                />
+                            </a>
                             <h3>
                                 {user.first} {user.last}
                             </h3>

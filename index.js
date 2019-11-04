@@ -10,6 +10,8 @@ const uidSafe = require("uid-safe");
 const path = require("path");
 const { s3Url } = require("./config");
 const s3 = require("./s3");
+const server = require("http").Server(app);
+const io = require("socket.io")(server, { origins: "localhost:8080" });
 
 const diskStorage = multer.diskStorage({
     destination: function(req, file, callback) {
@@ -75,6 +77,7 @@ app.get("/welcome", function(req, res) {
 // app.get("/register", (req, res) => {
 //     res.render("register");
 // });
+
 app.get("/receivefriendswannabes", function(req, res) {
     db.friendsnwannabes(req.session.userId)
         .then(({ rows }) => {
@@ -114,7 +117,7 @@ app.post("/acceptfriendrequest/:id", function(req, res) {
     // console.log("userProfileId", Number(req.params.id));
     db.acceptFriend(req.session.userId, Number(req.params.id))
         .then(rows => {
-            // console.log("friendaccepted", rows);
+            console.log("friendaccepted", rows);
             res.json(rows);
         })
         .catch(e => {
@@ -122,8 +125,8 @@ app.post("/acceptfriendrequest/:id", function(req, res) {
         });
 });
 app.post("/endfriendship/:id", function(req, res) {
-    console.log("userId", typeof req.session.userId);
-    console.log("userProfileId", Number(req.params.id));
+    // console.log("userId", typeof req.session.userId);
+    // console.log("userProfileId", Number(req.params.id));
     db.letsNotBeFriends(req.session.userId, Number(req.params.id))
         .then(rows => {
             console.log("friendship ended", rows);
@@ -284,6 +287,10 @@ app.post("/login", (request, response) => {
             // });
         });
 });
+app.get("/logout", function(req, res) {
+    req.session = null;
+    res.redirect("/");
+});
 
 /// DO NOT DELETE///
 app.get("*", function(req, res) {
@@ -294,7 +301,18 @@ app.get("*", function(req, res) {
     }
 });
 /// DO NOT DELETE///
-
-app.listen(8080, function() {
+io.on("connection", socket => {
+    console.log(`A socket with the id ${socket.id} just connected`);
+    socket.on("iAmHere", data => {
+        console.log(data.message);
+        socket.emitt("good to see you", {
+            message: "you look marvellous"
+        });
+    });
+    socket.on("disconnect", () => {
+        console.log(`A socket with the id ${socket.id} just disconnected`);
+    });
+});
+server.listen(8080, function() {
     console.log("I'm listening.");
 });
