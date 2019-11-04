@@ -31,7 +31,9 @@ export default function FindPeople() {
     return (
         <div className="contmainfindppl">
             <div className="mainfindppl">
-                <p>Are you looking for some one in particular!!</p>
+                <p className="txt">
+                    Are you looking for some one in particular!!
+                </p>
                 <input
                     type="text"
                     onChange={e => setUserInput(e.target.value)}

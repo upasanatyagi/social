@@ -2,7 +2,7 @@ body {
     height: 100%;
     width: 100%;
     background-size: cover;
-    background-color: PaleGreen;
+    background-color: #CCFFFF;
     margin: 0;
 }
 
@@ -34,7 +34,11 @@ body {
 .btnSubmit {
     margin: 0;
     height: 35px;
+    border-radius: 53px;
     width: 100px;
+    border: 2px solid green;
+    background-color: #FF6699;
+    font-size: 18px;
 }
 
 .login {
@@ -56,6 +60,14 @@ body {
 
 .login input:focus {
     background-color: yellow;
+}
+
+.links {
+    padding: 10px;
+    font-size: 20px;
+    height: 25px;
+    width: 100px;
+    color: skyblue;
 }
 
 #profilepicimg {}
@@ -86,16 +98,30 @@ body {
     height: 100%;
     width: 100%;
     margin-right: 30px;
-    border-radius: 57px;
+    border-radius: 25px;
     padding-bottom: 5px;
+    object-fit: cover;
+}
+
+#frndbtn {
+    margin-top: 30px;
+    background-color: chartreuse;
+    height: 48px;
+    width: 300px;
+    font-size: 22px;
+    border: 1px solid darkgreen;
+    color: darkmagenta;
+    border-radius: 52px;
 }
 
 #welcome {
-    font-family: Arial;
-    font-size: 40px;
+    /* font-family: Arial; */
+    font-family: 'Monoton', cursive;
+    font-size: 45px;
     text-align: center;
     color: BlueViolet;
-    margin-bottom: 10px;
+    margin-bottom: -5px;
+    margin-top: 2px;
 }
 
 #welcome1 {
@@ -111,17 +137,19 @@ body {
     color: Indigo;
 }
 
-#logsub {
-    background: green;
-}
-
 .profile {
     display: flex;
 }
 
+.txt {
+    font-family: 'Allura', cursive;
+    font-size: 40px;
+    font-weight: 500;
+}
+
 #findpeople {
-    height: 100px;
-    width: 100px;
+    height: 290px;
+    width: 273px;
     object-fit: cover;
     border: 2px solid black;
 }
@@ -148,17 +176,17 @@ body {
 }
 
 #fpbox {
-    height: 500px;
-    width: 250px;
+    height: 708px;
+    width: 615px;
     padding: 5px;
-    background: thistle;
+    background: MistyRose;
     text-align: center;
     overflow-y: scroll;
 }
 
 .myProfileDisplay {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     margin-top: 60px;
 }
@@ -166,6 +194,8 @@ body {
 .bioMain {
     height: 150px;
     width: 415px;
+    margin-right: 310px;
+    margin-top: -220px;
 }
 
 .wrapper {
@@ -180,6 +210,12 @@ body {
     top: -614px;
     animation-duration: 2s;
     border: 1px solid black;
+}
+
+.linkContainer {
+    display: flex;
+    margin-left: 970px;
+    padding: 40px;
 }
 
 @keyframes abc {
@@ -209,6 +245,11 @@ body {
 #mypropic {
     height: 500px;
     width: 400px;
+    margin-left: 288px;
+}
+
+#textarea {
+    font-size: 18px;
 }
 
 .headerPic {

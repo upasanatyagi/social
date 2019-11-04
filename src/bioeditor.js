@@ -33,10 +33,11 @@ export default class BioEditior extends React.Component {
     render() {
         return (
             <div className="bioMain">
-                <h3> bio editor</h3>
+                <h3> Bio Editior :</h3>
                 {this.state.textareaIsVisible && (
                     <div>
                         <textarea
+                            id="textarea"
                             name="bio"
                             rows="10"
                             cols="50"
@@ -48,7 +49,7 @@ export default class BioEditior extends React.Component {
                     </div>
                 )}
 
-                <p>{this.props.bio}</p>
+                <p className="txt">{this.props.bio}</p>
                 {!this.props.bio && (
                     <button onClick={() => this.toggleBio()}>Add Bio</button>
                 )}

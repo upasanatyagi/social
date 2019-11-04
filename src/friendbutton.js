@@ -47,7 +47,9 @@ export default function FriendButton({ userProfileId }) {
     return (
         <div>
             <div>
-                <button onClick={click}>{status}</button>
+                <button id="frndbtn" onClick={click}>
+                    {status}
+                </button>
             </div>
         </div>
     );
