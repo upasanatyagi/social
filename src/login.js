@@ -46,10 +46,15 @@ export default class Login extends React.Component {
                     <div className="error">oops! That was your fault</div>
                 )}
                 <p id="loginline">Please login here:</p>
-                <input name="email" onChange={e => this.handleChange(e)} />
+                <input
+                    name="email"
+                    placeholder="email"
+                    onChange={e => this.handleChange(e)}
+                />
                 <input
                     name="password"
                     type="password"
+                    placeholder="password"
                     onChange={e => this.handleChange(e)}
                 />
                 <button className="btnSubmit" onClick={() => this.submit()}>

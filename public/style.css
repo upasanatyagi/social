@@ -214,7 +214,7 @@ body {
 
 .linkContainer {
     display: flex;
-    margin-left: 970px;
+    margin-left: 778px;
     padding: 40px;
 }
 
@@ -259,4 +259,14 @@ body {
     margin-right: 15px;
 }
 
-#logout {}
+.chat-container {
+    height: 300px;
+    overflow-y: scroll;
+}
+
+.uploader {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+}

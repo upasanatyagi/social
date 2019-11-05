@@ -107,3 +107,13 @@ module.exports.friendsnwannabes = function(id) {
         [id]
     );
 };
+module.exports.addMessages = function(message, senderId) {
+    return db.query(
+        `INSERT INTO chats(message,chatter) VALUES ($1, $2) RETURNING *;
+        `,
+        [message, senderId]
+    );
+};
+module.exports.getLastTenMessages = function() {
+    return db.query(`SELECT `);
+};

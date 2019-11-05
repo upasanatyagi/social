@@ -36,10 +36,10 @@ export class OtherProfile extends React.Component {
                 <h1>
                     {this.state.first} {this.state.last}
                 </h1>
-                <h2>{this.state.bio}</h2>
                 <div className="otherProfilePic">
                     <ProfilePic imgUrl={this.state.profilepicture} />
                 </div>
+                <h2>{this.state.bio}</h2>
                 <div>
                     <FriendButton
                         const

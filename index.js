@@ -1,5 +1,9 @@
 const express = require("express");
+
 const app = express();
+const server = require("http").Server(app);
+const io = require("socket.io")(server, { origins: "localhost:8080" });
+
 const compression = require("compression");
 const db = require("./database");
 const cookieSession = require("cookie-session");
@@ -10,8 +14,6 @@ const uidSafe = require("uid-safe");
 const path = require("path");
 const { s3Url } = require("./config");
 const s3 = require("./s3");
-const server = require("http").Server(app);
-const io = require("socket.io")(server, { origins: "localhost:8080" });
 
 const diskStorage = multer.diskStorage({
     destination: function(req, file, callback) {
@@ -38,13 +40,22 @@ app.use(
         extended: false
     })
 );
+//REPLACING THE PREVIOUS COOKIE SESSION//
+const cookieSessionMiddleware = cookieSession({
+    secret: `I'm always angry.`,
+    maxAge: 1000 * 60 * 60 * 24 * 90
+});
 
-app.use(
-    cookieSession({
-        secret: `I'm always angry.`,
-        maxAge: 1000 * 60 * 60 * 24 * 14 //expiration age,how long cookie to last
-    })
-);
+app.use(cookieSessionMiddleware);
+io.use(function(socket, next) {
+    cookieSessionMiddleware(socket.request, socket.request.res, next);
+});
+// app.use(
+//     cookieSession({
+//         secret: `I'm always angry.`,
+//         maxAge: 1000 * 60 * 60 * 24 * 14 //expiration age,how long cookie to last
+//     })
+// );
 app.use(csurf());
 
 app.use(function(req, res, next) {
@@ -257,16 +268,11 @@ app.post("/login", (request, response) => {
                 .compare(password, hash)
                 .then(result => {
                     console.log(result);
-                    // response.json({ success: true });
                     return result;
                 })
                 .catch(e => {
                     console.log("index.login.post.bcrypt.error ", e);
                     response.sendStatus(500);
-                    // response.render("login", {
-                    //     error: true
-                    // });
-                    // response.redirect("/login");
                 });
         })
         .then(authorised => {
@@ -282,9 +288,6 @@ app.post("/login", (request, response) => {
         .catch(e => {
             console.log(e);
             response.sendStatus(500);
-            // response.render("login", {
-            //     error: true
-            // });
         });
 });
 app.get("/logout", function(req, res) {
@@ -314,5 +317,33 @@ io.on("connection", socket => {
     });
 });
 server.listen(8080, function() {
-    console.log("I'm listening.");
+    console.log("I'm listening.Social Network");
+});
+
+///SERVER SIDE SOCKET CODE///
+
+io.on("connection", function(socket) {
+    if (!socket.request.session.userId) {
+        return socket.disconnect(true);
+    }
+    const userId = socket.request.session.userId;
+    // we want to get 10 lasts messages */
+    db.getLastTenMessages().then(data => {
+        io.sockets.emit("chatMessages", data.rows);
+    });
+
+    socket.on("My amazing chat message", newMessage => {
+        console.log("index newMessage", newMessage);
+        db.addMessages(newMessage, userId)
+            .then(result => {
+                console.log("index result", result);
+            })
+            .catch(e => {
+                console.log("index e", e);
+            });
+        // do stuff in here
+        // we want to find out info about user who sent message
+        // we want to emit this message object
+        // we watnt to store it in the db
+    });
 });

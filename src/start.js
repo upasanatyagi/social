@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { App } from "./app";
 import Welcome from "./welcome";
-import * as io from "socket.io-client";
+import { init } from "./socket";
 
-const socket = io.connect();
+// const socket = io.connect();
 
 // socket.emitt("iAmHere", {
 //     message: "Hello"
@@ -31,6 +31,7 @@ const userIsLoggedIn = location.pathname != "/welcome";
 if (!userIsLoggedIn) {
     elem = <Welcome />;
 } else {
+    init(store);
     elem = (
         <Provider store={store}>
             <App />

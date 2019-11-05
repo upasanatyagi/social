@@ -56,22 +56,23 @@ export default class Register extends React.Component {
 
                 <input
                     name="first"
-                    // placeholder="firstname"
+                    placeholder="firstname"
                     onChange={e => this.handleChange(e)}
                 />
                 <input
                     name="last"
-                    // placeholder="lastname"
+                    placeholder="lastname"
                     onChange={e => this.handleChange(e)}
                 />
                 <input
                     name="email"
-                    // placeholder="email"
+                    placeholder="email"
                     onChange={e => this.handleChange(e)}
                 />
                 <input
                     name="password"
-                    // placeholder="password"
+                    type="password"
+                    placeholder="password"
                     onChange={e => this.handleChange(e)}
                 />
                 <div id="btnlogin">

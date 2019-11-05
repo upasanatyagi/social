@@ -8,6 +8,7 @@ import { OtherProfile } from "./otherprofile";
 import FindPeople from "./findpeople";
 import Friends from "./friends.js";
 // import FriendButton from './friendbutton';
+import { Chat } from "./chat";
 
 export class App extends React.Component {
     constructor() {
@@ -59,8 +60,8 @@ export class App extends React.Component {
                             </div>
                             <div className="linkContainer">
                                 <div>
-                                    <a className="links" href="/users">
-                                        Find people
+                                    <a className="links" href="/">
+                                        My Profile
                                     </a>
                                 </div>
                                 <div>
@@ -68,6 +69,17 @@ export class App extends React.Component {
                                         My Friends and Wannabes
                                     </a>
                                 </div>
+                                <div>
+                                    <a className="links" href="/users">
+                                        Find people
+                                    </a>
+                                </div>
+                                <div>
+                                    <a className="links" href="/chat">
+                                        ChatRoom
+                                    </a>
+                                </div>
+
                                 <div>
                                     <a className="links" href="/logout">
                                         Log Out
@@ -122,6 +134,16 @@ export class App extends React.Component {
                             path="/friends"
                             render={props => (
                                 <Friends
+                                    key={props.match.url}
+                                    match={props.match}
+                                    history={props.history}
+                                />
+                            )}
+                        />
+                        <Route
+                            path="/chat"
+                            render={props => (
+                                <Chat
                                     key={props.match.url}
                                     match={props.match}
                                     history={props.history}
