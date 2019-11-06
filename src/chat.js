@@ -19,31 +19,33 @@ export function Chat() {
     const keyCheck = e => {
         if (e.key === "Enter") {
             e.preventDefault();
+            console.log(" reducer state");
             console.log("e.target.value", e.target.value);
-            socket.emit("My amazing chat message", e.target.value);
+            socket.emit("chat message", e.target.value);
             e.target.value = "";
         }
     };
     return (
         <div className="chat">
-            <h1> CHAT ROOM </h1>
+            <div>
+                <h1> CHAT ROOM </h1>
+            </div>
             <div className="chat-container" ref={elemRef}>
-                <p> chat message will go here</p>
-                <p> chat message will go here</p>
-                <p> chat message will go here</p>
-                <p> chat message will go here</p>
-                <p> chat message will go here</p>
-                <p> chat message will go here</p>
-                <p> chat message will go here</p>
-                <p> chat message will go here</p>
-                <p> chat message will go here</p>
-                <p> chat message will go here</p>
-                <p> chat message will go here</p>
-                <p> chat message will go here</p>
-                <p> chat message will go here</p>
-                <p> chat message will go here</p>
-                <p> chat message will go here</p>
-                <p> chat message will go here</p>
+                {chatMessages &&
+                    chatMessages.length > 0 &&
+                    chatMessages.map(chatMessage => (
+                        <div key={chatMessage.chat_id}>
+                            <img
+                                id="chatImage"
+                                src={chatMessage.profilepicture}
+                            />
+                            <p>
+                                {chatMessage.first}
+                                {chatMessage.last}
+                            </p>
+                            <p>{chatMessage.message}</p>
+                        </div>
+                    ))}
             </div>
             <textarea
                 placeholder="Add your chat message here"

@@ -24,3 +24,17 @@ export async function unfriend(id) {
         id: id
     };
 }
+
+export async function chatMessage(newMessage) {
+    return {
+        type: "POST_MSG",
+        message: newMessage
+    };
+}
+
+export async function chatMessages(msgs) {
+    return {
+        type: "GET_ALL_MESSAGES",
+        messages: msgs
+    };
+}

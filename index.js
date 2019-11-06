@@ -329,14 +329,17 @@ io.on("connection", function(socket) {
     const userId = socket.request.session.userId;
     // we want to get 10 lasts messages */
     db.getLastTenMessages().then(data => {
+        console.log("socket data", data);
         io.sockets.emit("chatMessages", data.rows);
     });
 
-    socket.on("My amazing chat message", newMessage => {
+    socket.on("chat message", newMessage => {
         console.log("index newMessage", newMessage);
         db.addMessages(newMessage, userId)
-            .then(result => {
-                console.log("index result", result);
+            .then(() => {
+                db.getNewMessage(userId).then(({ rows }) => {
+                    io.sockets.emit("chatMessage", rows);
+                });
             })
             .catch(e => {
                 console.log("index e", e);

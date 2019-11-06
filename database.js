@@ -109,11 +109,29 @@ module.exports.friendsnwannabes = function(id) {
 };
 module.exports.addMessages = function(message, senderId) {
     return db.query(
-        `INSERT INTO chats(message,chatter) VALUES ($1, $2) RETURNING *;
+        `INSERT INTO chats(message,chatter) VALUES ($1, $2) ;
         `,
         [message, senderId]
     );
 };
+module.exports.getNewMessage = function(id) {
+    return db.query(
+        `SELECT chats.id AS chat_id, message, first, last, profilepicture, chats.created_at
+        FROM chats
+        JOIN registration
+        ON (chatter=$1 AND registration.id = chats.chatter)
+        ORDER BY chats.id DESC
+        LIMIT 1;`,
+        [id]
+    );
+};
 module.exports.getLastTenMessages = function() {
-    return db.query(`SELECT `);
+    return db.query(
+        `SELECT chats.id AS chat_id, message, first, last, profilepicture, chats.created_at
+        FROM chats
+        JOIN registration
+        ON (registration.id = chats.chatter)
+        ORDER BY chats.id DESC
+        LIMIT 10;`
+    );
 };

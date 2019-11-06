@@ -259,8 +259,11 @@ body {
     margin-right: 15px;
 }
 
+.chat {}
+
 .chat-container {
     height: 300px;
+    width: 300px;
     overflow-y: scroll;
 }
 
@@ -269,4 +272,9 @@ body {
     flex-direction: column;
     text-align: center;
     padding: 20px;
+}
+
+#chatImage {
+    height: 50px;
+    width: 50px;
 }

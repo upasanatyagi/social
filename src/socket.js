@@ -8,11 +8,16 @@ export const init = store => {
         socket = io.connect();
         //All our dispatches of actions will go in iAmHere
 
-        socket.on("new chat message from server", newMessage => {
-            console.log("This is from the server", newMessage);
+        socket.on("chatMessage", newMessage => {
+            console.log("socket newMessage", newMessage);
+            store.dispatch(chatMessage(newMessage));
+        });
+        socket.on("chatMessages", msgs => {
+            console.log("sockets msgs", msgs);
+            store.dispatch(chatMessages(msgs));
         });
     }
 };
-// socket.on("chatMessages", msgs => store.dispatch(chatMessages(msgs)));
-
-// socket.on("chatMessage", msg => store.dispatch(chatMessage(msg)));
+// socket.on("new chat message from server", newMessage => {
+//     console.log("This is from the server", newMessage);
+// });

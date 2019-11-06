@@ -28,6 +28,18 @@ export function reducer(state = {}, action) {
             users: state.users.filter(user => user.id != action.id)
         };
     }
+    if (action.type == "POST_MSG") {
+        state = {
+            ...state,
+            chatMessages: state.chatMessages.concat(action.message)
+        };
+    }
+    if (action.type == "GET_ALL_MESSAGES") {
+        state = {
+            ...state,
+            chatMessages: action.messages.reverse()
+        };
+    }
 
     return state;
 }
