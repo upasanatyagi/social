@@ -39,22 +39,37 @@ export default class BioEditior extends React.Component {
                         <textarea
                             id="textarea"
                             name="bio"
-                            rows="10"
-                            cols="50"
+                            rows="8"
+                            cols="42"
                             placeholder="bio here"
                             value={this.state.bioText}
                             onChange={e => this.handleChange(e)}
                         ></textarea>
-                        <button onClick={() => this.save()}>save</button>
+                        <button
+                            className="btnSubmit"
+                            onClick={() => this.save()}
+                        >
+                            save
+                        </button>
                     </div>
                 )}
 
                 <p className="txt">{this.props.bio}</p>
                 {!this.props.bio && (
-                    <button onClick={() => this.toggleBio()}>Add Bio</button>
+                    <button
+                        className="btnSubmit"
+                        onClick={() => this.toggleBio()}
+                    >
+                        Add Bio
+                    </button>
                 )}
                 {this.props.bio && (
-                    <button onClick={() => this.toggleBio()}>Edit Bio</button>
+                    <button
+                        className="btnSubmit"
+                        onClick={() => this.toggleBio()}
+                    >
+                        Edit Bio
+                    </button>
                 )}
             </div>
         );

@@ -2,7 +2,7 @@ body {
     height: 100%;
     width: 100%;
     background-size: cover;
-    background-color: #CCFFFF;
+    background-color: #ccffff;
     margin: 0;
 }
 
@@ -21,7 +21,7 @@ body {
     border: 1px solid #000;
     text-align: center;
     border-radius: 5px;
-    transition: border-color .5s ease-out;
+    transition: border-color 0.5s ease-out;
 }
 
 #btnlogin {
@@ -37,7 +37,7 @@ body {
     border-radius: 53px;
     width: 100px;
     border: 2px solid green;
-    background-color: #FF6699;
+    background-color: #ff6699;
     font-size: 18px;
 }
 
@@ -62,6 +62,21 @@ body {
     background-color: yellow;
 }
 
+.inputFld {
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    height: 30px;
+    width: 250px;
+    margin-bottom: 5px;
+    border: 1px solid black;
+    font-size: 18px;
+}
+
+.inputFld input:focus {
+    background-color: yellow;
+}
+
 .links {
     padding: 10px;
     font-size: 20px;
@@ -69,10 +84,6 @@ body {
     width: 100px;
     color: skyblue;
 }
-
-#profilepicimg {}
-
-#profileimg {}
 
 #profilelogo {
     height: 100px;
@@ -94,10 +105,10 @@ body {
     border: 2px solid RebeccaPurple;
 }
 
-#smallimg {
+#image1 {
     height: 100%;
     width: 100%;
-    margin-right: 30px;
+    /* margin-right: 30px; */
     border-radius: 25px;
     padding-bottom: 5px;
     object-fit: cover;
@@ -116,7 +127,7 @@ body {
 
 #welcome {
     /* font-family: Arial; */
-    font-family: 'Monoton', cursive;
+    font-family: "Monoton", cursive;
     font-size: 45px;
     text-align: center;
     color: BlueViolet;
@@ -142,9 +153,11 @@ body {
 }
 
 .txt {
-    font-family: 'Allura', cursive;
-    font-size: 40px;
+    font-family: "Allura", cursive;
+    font-size: 33px;
     font-weight: 500;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 #findpeople {
@@ -156,9 +169,9 @@ body {
 
 .mainfindppl {
     width: 400px;
-    padding: 3px;
+    /* padding: 3px; */
     margin-left: 700px;
-    margin-top: 20px;
+    /* margin-top: 20px; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -170,44 +183,59 @@ body {
     align-items: center;
 }
 
+.op1 {}
+
+.op2 {}
+
 .otherProfilePic {
-    height: 450px;
     width: 350px;
+    text-align: center;
 }
 
 #fpbox {
-    height: 708px;
+    height: 691px;
     width: 615px;
     padding: 5px;
     background: MistyRose;
     text-align: center;
     overflow-y: scroll;
+    margin-top: 0;
 }
 
 .myProfileDisplay {
+    height: 300px;
+    width: 500px;
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    margin-top: 60px;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
+.myProfileDisplay img {
+    width: 390px;
+    height: 472px;
+    object-fit: cover;
+    border: 6px solid limegreen;
+    border-style: double;
 }
 
 .bioMain {
-    height: 150px;
-    width: 415px;
-    margin-right: 310px;
-    margin-top: -220px;
+    margin-left: 30px;
+}
+
+.bioMain h3 {
+    margin-top: 0px;
 }
 
 .wrapper {
-    position: relative;
     width: 300px;
+    position: fixed;
     height: 200px;
-    background-color: DarkSalmon;
+    right: 16px;
+    background-color: LightYellow;
     text-align: center;
     border-radius: 5px;
     animation-name: abc;
-    left: 80%;
-    top: -559px;
+    top: 117px;
     animation-duration: 2s;
     border: 1px solid black;
 }
@@ -220,11 +248,11 @@ body {
 
 @keyframes abc {
     0% {
-        left: 90%;
+        left: 80%;
     }
 
     100% {
-        left: 80%;
+        left: 60%;
     }
 }
 
@@ -252,29 +280,138 @@ body {
     font-size: 18px;
 }
 
-.headerPic {
-    height: 90px;
-    width: 90px;
-    margin: 5px;
-    margin-right: 15px;
+.headerPic img {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    margin-right: 10px;
+    border-radius: 48px;
 }
 
-.chat {}
+.chat {
+    width: 30%;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 125px;
+}
+
+.chat textarea {
+    width: 100%;
+    padding: 0;
+    height: 78px;
+    text-align: center;
+}
 
 .chat-container {
-    height: 300px;
-    width: 300px;
+    height: 357px;
     overflow-y: scroll;
+    /* border: 2px solid red; */
+    padding: 10px;
+    background: PeachPuff;
 }
 
+.chatbox {
+    background-color: Lavender;
+    border: 1px solid PaleGoldenrod;
+    display: flex;
+    margin-bottom: 6px;
+}
+
+.chatbox1 {
+    padding-right: 15px;
+}
+
+.chatbox2 {
+    flex-wrap: wrap;
+}
+
+/* #textArea {
+    height: 357px;
+    width: 408px;
+} */
 .uploader {
     display: flex;
     flex-direction: column;
     text-align: center;
     padding: 20px;
+    padding-left: 94px;
+}
+
+.inputFile {
+    height: 31px;
+    width: 179px;
 }
 
 #chatImage {
     height: 50px;
     width: 50px;
+    border-radius: 5px;
+}
+
+.inputFld {
+    margin-top: 0;
+}
+
+.friendsMain {
+    display: grid;
+    padding-top: 110px;
+    /* display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start; */
+}
+
+.friends {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 20px;
+    width: 100%;
+    padding-top: 10px;
+    /* text-align: center; */
+}
+
+.user {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    border: 1px solid lime;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0, 255, 0, 0.25),
+        0 10px 10px rgba(0, 0, 0, 0.22);
+    /* padding-bottom: 20px; */
+}
+
+.friends img {
+    height: 200px;
+    width: 200px;
+    border: 2px solid black;
+    object-fit: cover;
+}
+
+.wannabes {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 20px;
+    width: 100%;
+    padding-top: 10px;
+    /* height: 100%; */
+}
+
+.user-wannabes {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    border: 1px solid lime;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0, 255, 0, 0.25),
+        0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.wannabes img {
+    height: 200px;
+    width: 200px;
+    border: 2px solid black;
+    object-fit: cover;
 }

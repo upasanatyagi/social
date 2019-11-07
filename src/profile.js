@@ -15,7 +15,7 @@ export default function Profile({
     imgUrl = imgUrl || "/default.jpeg";
     return (
         <div className="myProfileDisplay">
-            <div id="mypropic">
+            <div>
                 <ProfilePic
                     firstName={firstName}
                     lastName={lastName}
@@ -25,6 +25,7 @@ export default function Profile({
             </div>
             <div>
                 <BioEditior
+                    className="bioEditor"
                     toggleBio={toggleBio}
                     methodInBio={methodInBio}
                     bio={bio}

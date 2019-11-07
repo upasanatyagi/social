@@ -41,10 +41,12 @@ export default class Uploader extends React.Component {
                 </h3>
                 <div className="uploader">
                     <input
+                        className="inputFile"
                         type="file"
                         accept="image/*"
                         onChange={e => this.handleChange(e)}
                     />
+
                     <button className="btnSubmit" onClick={() => this.submit()}>
                         submit
                     </button>

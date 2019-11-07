@@ -14,7 +14,7 @@ export function Chat() {
         console.log("clientHeight: ", elemRef.current.clientHeight);
         elemRef.current.scrollTop =
             elemRef.current.scrollHeight - elemRef.current.clientHeight;
-    }, []);
+    }, [chatMessages]);
 
     const keyCheck = e => {
         if (e.key === "Enter") {
@@ -34,23 +34,30 @@ export function Chat() {
                 {chatMessages &&
                     chatMessages.length > 0 &&
                     chatMessages.map(chatMessage => (
-                        <div key={chatMessage.chat_id}>
-                            <img
-                                id="chatImage"
-                                src={chatMessage.profilepicture}
-                            />
-                            <p>
-                                {chatMessage.first}
-                                {chatMessage.last}
-                            </p>
-                            <p>{chatMessage.message}</p>
+                        <div className="chatbox" key={chatMessage.chat_id}>
+                            <div className="chatbox1">
+                                <img
+                                    id="chatImage"
+                                    src={chatMessage.profilepicture}
+                                />
+
+                                <p>
+                                    {chatMessage.first}
+                                    {chatMessage.last}
+                                </p>
+                            </div>
+                            <div className="chatbox2">
+                                <p>{chatMessage.message}</p>
+                            </div>
                         </div>
                     ))}
             </div>
-            <textarea
-                placeholder="Add your chat message here"
-                onKeyDown={keyCheck}
-            ></textarea>
+            <div>
+                <textarea
+                    placeholder="Add your chat message here"
+                    onKeyDown={keyCheck}
+                ></textarea>
+            </div>
         </div>
     );
 }

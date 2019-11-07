@@ -29,7 +29,7 @@ export default function Friends() {
     }
 
     return (
-        <div>
+        <div className="friendsMain">
             <div className="friends">
                 <h3>My friends!!</h3>
                 {friends.map(friend => (
@@ -48,7 +48,7 @@ export default function Friends() {
             <div className="wannabes">
                 <h3>My wannabes</h3>
                 {wannabes.map(wannabe => (
-                    <div className="user" key={wannabe.id}>
+                    <div className="user-wannabes" key={wannabe.id}>
                         <img src={wannabe.profilepicture} />
                         <div className="buttons">
                             <button

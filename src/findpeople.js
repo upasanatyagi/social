@@ -35,6 +35,7 @@ export default function FindPeople() {
                     Are you looking for some one in particular!!
                 </p>
                 <input
+                    className="inputFld"
                     type="text"
                     onChange={e => setUserInput(e.target.value)}
                 />
