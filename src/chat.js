@@ -41,10 +41,10 @@ export function Chat() {
                                     src={chatMessage.profilepicture}
                                 />
 
-                                <p>
+                                <h3>
                                     {chatMessage.first}
                                     {chatMessage.last}
-                                </p>
+                                </h3>
                             </div>
                             <div className="chatbox2">
                                 <p>{chatMessage.message}</p>

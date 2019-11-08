@@ -37,6 +37,7 @@ export default function Friends() {
                         <img src={friend.profilepicture} />
                         <div className="buttons">
                             <button
+                                id="unfriend"
                                 onClick={() => dispatch(unfriend(friend.id))}
                             >
                                 Unfriend
@@ -52,6 +53,7 @@ export default function Friends() {
                         <img src={wannabe.profilepicture} />
                         <div className="buttons">
                             <button
+                                id="acceptFriend"
                                 onClick={() =>
                                     dispatch(acceptfriendrequest(wannabe.id))
                                 }
