@@ -249,9 +249,9 @@ body {
     background-color: LightYellow;
     text-align: center;
     border-radius: 5px;
-    animation-name: abc;
+    /* animation-name: abc; */
     top: 117px;
-    animation-duration: 2s;
+    /* animation-duration: 2s; */
     border: 1px solid black;
 }
 
@@ -261,7 +261,7 @@ body {
     padding: 40px;
 }
 
-@keyframes abc {
+/* @keyframes abc {
     0% {
         left: 80%;
     }
@@ -269,17 +269,15 @@ body {
     100% {
         left: 60%;
     }
-}
-
-#slide {
+} */
+/* #slide {
     position: absolute;
     left: -100px;
     width: 100px;
     height: 100px;
     background: blue;
     transition: 1s;
-}
-
+} */
 .wrapper #slide {
     transition: 1s;
     left: 0;

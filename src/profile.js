@@ -1,6 +1,6 @@
 import React from "react";
 import { ProfilePic } from "./profile-pic";
-import BioEditior from "./bioeditor";
+import BioEditor from "./bioeditor";
 
 export default function Profile({
     firstName,
@@ -24,7 +24,7 @@ export default function Profile({
                 />
             </div>
             <div>
-                <BioEditior
+                <BioEditor
                     className="bioEditor"
                     toggleBio={toggleBio}
                     methodInBio={methodInBio}

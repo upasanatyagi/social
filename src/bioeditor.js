@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "./axios";
 
-export default class BioEditior extends React.Component {
+export default class BioEditor extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -12,7 +12,7 @@ export default class BioEditior extends React.Component {
     componentDidMount() {
         console.log("uploader mounted");
 
-        console.log("bio editior this.props", this.props);
+        console.log("bio editor this.props", this.props);
     }
     toggleBio() {
         this.setState({ textareaIsVisible: !this.state.textareaIsVisible });
@@ -33,7 +33,7 @@ export default class BioEditior extends React.Component {
     render() {
         return (
             <div className="bioMain">
-                <h3> Bio Editior :</h3>
+                <h3> Bio Editor :</h3>
                 {this.state.textareaIsVisible && (
                     <div>
                         <textarea
